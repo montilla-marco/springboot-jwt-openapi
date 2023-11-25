@@ -1,4 +1,4 @@
-package ms.mmontilla.user.registry;
+package ms.mmontilla.registry;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -32,8 +32,6 @@ paths:
     post:
       operationId: createUser
       summary: Create a User
-      security:
-        - BearerAuth: [write]
       description: Lets create an user post a entry in users registry
       requestBody:
         required: true
@@ -58,10 +56,6 @@ paths:
                 $ref: "#/components/schemas/Error"
           
 components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
   schemas:
     User:
       type: object
