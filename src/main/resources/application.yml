@@ -1,6 +1,11 @@
 app:
   name: MS User Service
+  description: REST API for create users using JWT.
   version: 0.0.1
+  contact:
+    name: Marco A Montilla R
+    email: marcomarco@marcomarco.blog
+    url: http://marcomarco.blog
 
 server:
   port: 8092
@@ -23,3 +28,4 @@ spring:
       path: /h2-console
       settings.trace: false
       settings.web-allow-others: false
+

@@ -2,7 +2,7 @@
 Muestra de un simple picoservicio para la API REST de creacion de usuarios.
 
 ## Creacion del contrato del API
-Antes de empezar a codear lo recomendable es,  reunir las personas involucradas en el desarrollo, tanto del frontend
+Antes de empezar a codear lo recomendable es, reunir las personas involucradas en el desarrollo, tanto del frontend
 como backend y en tarea conjunta elaborar el contrato de comportamiento del API, luego cada parte puede empezar a
 trabajar por su lado, confiando en el mismo, culaquier modificacion debe ser comunicada, asi se logra una separación 
 de intereses lo que permite trabajar de forma paralela y dividida.
