@@ -1,11 +1,9 @@
-package ms.mmontilla.registry.user.api.dto;
+package ms.mmontilla.registry.user.presentation.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.UUID;
 
 public class UserOut extends UserIn {
@@ -25,8 +23,7 @@ public class UserOut extends UserIn {
     private String token = null;
 
     @JsonProperty("isactive")
-    private Boolean isactive = null;
-
+    private Boolean isActive = null;
 
     @Schema(description = "")
     public UUID getId() {
@@ -74,18 +71,18 @@ public class UserOut extends UserIn {
         this.token = token;
     }
 
-    public UserOut isactive(Boolean isactive) {
-        this.isactive = isactive;
+    public UserOut isActive(Boolean isactive) {
+        this.isActive = isactive;
         return this;
     }
 
     @Schema(description = "")
-    public Boolean isIsactive() {
-        return isactive;
+    public Boolean isActive() {
+        return isActive;
     }
 
-    public void setIsactive(Boolean isactive) {
-        this.isactive = isactive;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
 }

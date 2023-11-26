@@ -1,4 +1,4 @@
-package ms.mmontilla.registry.user.api.dto;
+package ms.mmontilla.registry.user.presentation.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;

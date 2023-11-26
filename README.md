@@ -36,28 +36,46 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:    
-              schema:
-                $ref: "#/components/schemas/User"
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserIn"
 
       responses:
         '201':
           description: OK user created
           content:
-            application/json:    
+            application/json:
               schema:
                 $ref: "#/components/schemas/UserOut"
 
-        default:
-          description: Unexpected Error
+        '400':
+          description: Invalid query Params
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-          
+        '404':
+          description: Service Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: User Already Exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Exception Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   schemas:
-    User:
+    UserIn:
       type: object
       required:
         - email
@@ -77,7 +95,7 @@ components:
           type: string
           format:
             password
-        
+
         phones:
           type: array
           items:
@@ -122,23 +140,15 @@ components:
           type: boolean
 
       allOf:     # Combines the User and the output model
-        - $ref: '#/components/schemas/User'
+        - $ref: '#/components/schemas/UserIn'
 
     Error:
       type: object
       required:
-        - code
         - message
       properties:
-        http-code:
-          type: integer
-          minimum: 3
-          maximum: 3
         message:
           type: string
-        stack-trace:
-          type: string
-          
 
 ```
 Haga el contrato en la siguiente direccion: https://editor-next.swagger.io/
@@ -169,3 +179,4 @@ The following guides illustrate how to use some features concretely:
 These additional references should also help you:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+* [OpenAPI Specification formerly Swagger Specification](https://swagger.io/docs/specification/about/)

@@ -1,4 +1,4 @@
-package ms.mmontilla.registry.user.api;
+package ms.mmontilla.registry.user.presentation;
 
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -8,8 +8,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import ms.mmontilla.registry.user.api.dto.UserIn;
-import ms.mmontilla.registry.user.api.dto.UserOut;
+import ms.mmontilla.registry.user.presentation.dto.UserIn;
+import ms.mmontilla.registry.user.presentation.dto.UserOut;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,7 +55,7 @@ public interface Api {
                                             schema = @Schema(implementation = Error.class)
                          )
             ) })
-    @RequestMapping(value = "/api/v1/users",
+    @RequestMapping(value = "/presentation/v1/users",
             produces = { "application/json" },
             consumes = { "application/json" },
             method = RequestMethod.POST)
