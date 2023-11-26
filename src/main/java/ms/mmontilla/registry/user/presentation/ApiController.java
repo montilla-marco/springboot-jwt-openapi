@@ -19,7 +19,11 @@ import javax.validation.Valid;
 @RequestMapping("/presentation/v1/users")
 public class ApiController implements Api {
 
-    private UserService userService;
+    private final UserService userService;
+
+    public ApiController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping
     @Override

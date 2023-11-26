@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
                 version = "${app.version}",
                 contact = @Contact(
                         name = "${app.contact.name}", email = "${app.contact.email}", url = "${app.contact.url}"
-                )
+                ),
                 license = @License(
                         name = "GNU General Public License v3.0", url = "https://www.gnu.org/licenses/quick-guide-gplv3.html"
                 ),

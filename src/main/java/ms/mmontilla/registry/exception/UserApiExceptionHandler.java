@@ -52,6 +52,7 @@ public class UserApiExceptionHandler extends ResponseEntityExceptionHandler {
             NullPointerException.class,
             Exception.class
     })
+    //TODO introduce tier exceptions
     public ResponseEntity<Object> handleAnyException(Exception ex) {
         return new ResponseEntity<Object>(new Error("Ocurrio un inconveniente procesando la soilicitud"),
                 HttpStatus.INTERNAL_SERVER_ERROR);

@@ -92,11 +92,11 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
-    public Boolean getIsactive() {
+    public Boolean isActive() {
         return isactive;
     }
 
-    public void setIsactive(Boolean isactive) {
+    public void isActive(Boolean isactive) {
         this.isactive = isactive;
     }
 
