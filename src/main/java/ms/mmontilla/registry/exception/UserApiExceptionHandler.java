@@ -71,8 +71,8 @@ public class UserApiExceptionHandler extends ResponseEntityExceptionHandler {
     })
     public ResponseEntity<Object> handleInvalidPasswordFormatException(Exception ex) {
         return new ResponseEntity<Object>(new Error("El formato del password debe tener " +
-                "entre 8 y 16 digitos, de los cuales al menos un numero, una mayuscula, minusculas " +
-                " y almenos un caracter especial"),
+                "entre 8 y 16 digitos, de los cuales al menos un numero, una minusculas " +
+                " sin caracteres especiales"),
                 HttpStatus.CONFLICT);
     }
 

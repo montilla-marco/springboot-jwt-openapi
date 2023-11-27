@@ -10,7 +10,7 @@ app:
   user:
     validations:
       regexp:
-        password: ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$
+        password: ^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$
 
 server:
   port: 8092

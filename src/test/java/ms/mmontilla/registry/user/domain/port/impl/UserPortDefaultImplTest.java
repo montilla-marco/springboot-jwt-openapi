@@ -3,7 +3,6 @@ package ms.mmontilla.registry.user.domain.port.impl;
 import ms.mmontilla.registry.user.domain.adapter.UserAdapter;
 import ms.mmontilla.registry.user.domain.exception.InvalidPasswordFormatException;
 import ms.mmontilla.registry.user.domain.vo.UserVo;
-import ms.mmontilla.registry.user.repository.datasource.model.UserEntity;
 import ms.mmontilla.registry.user.utils.UsersFactories;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,8 +30,8 @@ class UserPortDefaultImplTest {
     @BeforeEach
     void setUp() {
         ReflectionTestUtils.setField(userPort,
-                "passWordRegexp",
-                "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)(?!.* ).{8,16}$");
+                "passwordRegexp",
+                "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$");
     }
 
     @Test
@@ -80,5 +79,19 @@ class UserPortDefaultImplTest {
 
         // assert
         assertTrue(exception.getMessage().contains("Invalid Password Format"));
+    }
+
+    @Test
+    void givenUserWithValidPassword_whenSave_then() {
+        //arrange
+        UserVo userVo = UsersFactories.getDefaultUserVo();
+        userVo.setPassword("Esteban2020");
+        when(adapter.save(any(UserVo.class))).thenReturn(userVo);
+
+        // act
+        UserVo saved = userPort.save(userVo);
+
+        // assert
+        assertThat(saved).isEqualTo(userVo);
     }
 }
