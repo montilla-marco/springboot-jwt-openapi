@@ -4,13 +4,10 @@ import ms.mmontilla.registry.user.domain.vo.User;
 import ms.mmontilla.registry.user.presentation.dto.Phone;
 import ms.mmontilla.registry.user.presentation.dto.UserIn;
 import ms.mmontilla.registry.user.presentation.dto.UserOut;
-import ms.mmontilla.registry.user.presentation.utils.JwtUtils;
 import ms.mmontilla.registry.user.presentation.utils.UsersFactories;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
