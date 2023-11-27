@@ -1,7 +1,7 @@
 package ms.mmontilla.registry.user.domain.port;
 
-import ms.mmontilla.registry.user.domain.vo.User;
+import ms.mmontilla.registry.user.domain.vo.UserVo;
 
 public interface UserPort {
-    User save(User user);
+    UserVo save(UserVo userVo);
 }

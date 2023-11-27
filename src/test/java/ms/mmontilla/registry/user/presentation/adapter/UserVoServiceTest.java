@@ -1,13 +1,13 @@
-package ms.mmontilla.registry.user.presentation.service;
+package ms.mmontilla.registry.user.presentation.adapter;
 
 import ms.mmontilla.registry.user.domain.port.UserPort;
-import ms.mmontilla.registry.user.domain.vo.User;
+import ms.mmontilla.registry.user.domain.vo.UserVo;
+import ms.mmontilla.registry.user.presentation.adapter.impl.UserServiceImpl;
 import ms.mmontilla.registry.user.presentation.dto.Phone;
 import ms.mmontilla.registry.user.presentation.dto.UserIn;
 import ms.mmontilla.registry.user.presentation.dto.UserOut;
 import ms.mmontilla.registry.user.presentation.mapper.UserMapper;
-import ms.mmontilla.registry.user.presentation.service.impl.UserServiceImpl;
-import ms.mmontilla.registry.user.presentation.utils.UsersFactories;
+import ms.mmontilla.registry.user.utils.UsersFactories;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,7 +21,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class UserServiceTest {
+class UserVoServiceTest {
 
     @InjectMocks
     private UserServiceImpl service;
@@ -36,9 +36,9 @@ class UserServiceTest {
     void givenUserIn_whenCreateUser_thenReturnUserOutInstance() {
         // arrange
         UserIn userIn = new UserIn();
-        when(mapper.map(any(UserIn.class))).thenReturn(new User());
-        when(userPort.save(any(User.class))).thenReturn(new User());
-        when(mapper.map(any(User.class))).thenReturn(new UserOut());
+        when(mapper.map(any(UserIn.class))).thenReturn(new UserVo());
+        when(userPort.save(any(UserVo.class))).thenReturn(new UserVo());
+        when(mapper.map(any(UserVo.class))).thenReturn(new UserOut());
 
         // act
         UserOut userOut = service.createUser(userIn);
@@ -54,9 +54,9 @@ class UserServiceTest {
         UserOut userOut = UsersFactories.getDefaultUserOut();
         Phone phoneIn = userOut.getPhones().get(0);
 
-        when(mapper.map(any(UserIn.class))).thenReturn(new User());
-        when(userPort.save(any(User.class))).thenReturn(new User());
-        when(mapper.map(any(User.class))).thenReturn(userOut);
+        when(mapper.map(any(UserIn.class))).thenReturn(new UserVo());
+        when(userPort.save(any(UserVo.class))).thenReturn(new UserVo());
+        when(mapper.map(any(UserVo.class))).thenReturn(userOut);
 
         // act
         UserOut userResp = service.createUser(new UserIn());

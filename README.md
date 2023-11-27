@@ -32,7 +32,7 @@ paths:
     post:
       operationId: createUser
       summary: Create a User
-      description: Lets create an user post a entry in users registry
+      description: Lets create an userVo post a entry in users registry
       requestBody:
         required: true
         content:
@@ -42,7 +42,7 @@ paths:
 
       responses:
         '201':
-          description: OK user created
+          description: OK userVo created
           content:
             application/json:
               schema:

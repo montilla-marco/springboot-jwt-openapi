@@ -1,13 +1,17 @@
-package ms.mmontilla.registry.user.presentation.utils;
+package ms.mmontilla.registry.user.utils;
 
-import ms.mmontilla.registry.user.domain.vo.User;
+import ms.mmontilla.registry.user.domain.vo.PhoneVo;
+import ms.mmontilla.registry.user.domain.vo.UserVo;
 import ms.mmontilla.registry.user.presentation.dto.Phone;
 import ms.mmontilla.registry.user.presentation.dto.UserIn;
 import ms.mmontilla.registry.user.presentation.dto.UserOut;
+import ms.mmontilla.registry.user.repository.datasource.model.PhoneEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import static java.util.stream.Collectors.toList;
 
 public class UsersFactories {
 
@@ -31,6 +35,18 @@ public class UsersFactories {
         return phones;
     }
 
+    public static List<PhoneVo> getDefaultPhonesVo() {
+        return getDefaultPhones().stream()
+                .map(phone -> new PhoneVo(phone.getNumber(), phone.getCityCode(), phone.getCountryCode()))
+                .collect(toList());
+    }
+
+    public static List<PhoneEntity> getDefaultPhoneEntities() {
+        return getDefaultPhones().stream()
+                .map(phone -> new PhoneEntity(phone.getNumber(), phone.getCityCode(), phone.getCountryCode()))
+                .collect(toList());
+    }
+
     public static UserOut getDefaultUserOut() {
         UserOut user = new UserOut();
         user.setName("Juan Rodriguez");
@@ -45,17 +61,17 @@ public class UsersFactories {
         return user;
     }
 
-    public static User getDefaultUser() {
-        User user = new User();
-        user.setName("Juan Rodriguez");
-        user.setEmail("juan@rodriguez.org");
-        user.setPassword("hunter2");
-        user.setPhones(getDefaultPhones());
+    public static UserVo getDefaultUserVo() {
+        UserVo userVo = new UserVo();
+        userVo.setName("Juan Rodriguez");
+        userVo.setEmail("juan@rodriguez.org");
+        userVo.setPassword("hunter2");
+        userVo.setPhones(getDefaultPhonesVo());
         UUID uuid = UUID.randomUUID();
-        user.setId(uuid);
+        userVo.setId(uuid);
         String accessToken = JwtUtils.getAccessToken("juan@rodriguez.org");
-        user.setAccessToken(accessToken);
-        user.isActive(true);
-        return user;
+        userVo.setAccessToken(accessToken);
+        userVo.isActive(true);
+        return userVo;
     }
 }

@@ -1,11 +1,11 @@
-package ms.mmontilla.registry.user.presentation.service.impl;
+package ms.mmontilla.registry.user.presentation.adapter.impl;
 
 import ms.mmontilla.registry.user.domain.port.UserPort;
-import ms.mmontilla.registry.user.domain.vo.User;
+import ms.mmontilla.registry.user.domain.vo.UserVo;
 import ms.mmontilla.registry.user.presentation.dto.UserIn;
 import ms.mmontilla.registry.user.presentation.dto.UserOut;
 import ms.mmontilla.registry.user.presentation.mapper.UserMapper;
-import ms.mmontilla.registry.user.presentation.service.UserService;
+import ms.mmontilla.registry.user.presentation.adapter.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,9 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserOut createUser(UserIn userIn) {
-        User user = mapper.map(userIn);
-        User userSaved = userPort.save(user);
-        UserOut userOut = mapper.map(userSaved);
+        UserVo userVo = mapper.map(userIn);
+        UserVo userVoSaved = userPort.save(userVo);
+        UserOut userOut = mapper.map(userVoSaved);
         return userOut;
     }
 }

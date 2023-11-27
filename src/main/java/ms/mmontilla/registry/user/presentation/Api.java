@@ -21,46 +21,46 @@ import javax.validation.Valid;
 @Validated
 public interface Api {
 
-    @Operation(summary = "Create a User",
-               description = "Lets create an user post a entry in users registry",
-               tags={  })
+    @Operation(summary = "Create a UserVo",
+            description = "Lets create an user post a entry in users registry",
+            tags = {})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201",
-                         description = "OK user created",
-                         content = @Content(mediaType = "application/json",
-                                            schema = @Schema(implementation = UserOut.class)
-                         )
+                    description = "OK user created",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = UserOut.class)
+                    )
             ),
             @ApiResponse(responseCode = "400",
-                         description = "Invalid query Params",
-                         content = @Content(mediaType = "application/json",
-                                            schema = @Schema(implementation = Error.class)
-                         )
+                    description = "Invalid query Params",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Error.class)
+                    )
             ),
             @ApiResponse(responseCode = "404",
-                        description = "Service Not found",
-                        content = @Content(mediaType = "application/json",
-                                           schema = @Schema(implementation = Error.class)
-                        )
+                    description = "Service Not found",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Error.class)
+                    )
             ),
             @ApiResponse(responseCode = "409",
-                         description = "User Already Exists",
-                         content = @Content(mediaType = "application/json",
-                                            schema = @Schema(implementation = Error.class)
-                         )
+                    description = "UserVo Already Exists",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Error.class)
+                    )
             ),
             @ApiResponse(responseCode = "500",
-                         description = "Exception Error",
-                         content = @Content(mediaType = "application/json",
-                                            schema = @Schema(implementation = Error.class)
-                         )
-            ) })
+                    description = "Exception Error",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Error.class)
+                    )
+            )})
     @RequestMapping(value = "/presentation/v1/users",
-            produces = { "application/json" },
-            consumes = { "application/json" },
+            produces = {"application/json"},
+            consumes = {"application/json"},
             method = RequestMethod.POST)
     ResponseEntity<UserOut> createUser(@Parameter(in = ParameterIn.DEFAULT,
-                                                  description = "",
-                                                  required=true, schema=@Schema()) @Valid @RequestBody UserIn body);
+            description = "",
+            required = true, schema = @Schema()) @Valid @RequestBody UserIn body);
 
 }

@@ -1,11 +1,11 @@
 package ms.mmontilla.registry.user.presentation.impl;
 
 import ms.mmontilla.registry.user.presentation.ApiController;
+import ms.mmontilla.registry.user.presentation.adapter.UserService;
 import ms.mmontilla.registry.user.presentation.dto.Phone;
 import ms.mmontilla.registry.user.presentation.dto.UserIn;
 import ms.mmontilla.registry.user.presentation.dto.UserOut;
-import ms.mmontilla.registry.user.presentation.service.UserService;
-import ms.mmontilla.registry.user.presentation.utils.UsersFactories;
+import ms.mmontilla.registry.user.utils.UsersFactories;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

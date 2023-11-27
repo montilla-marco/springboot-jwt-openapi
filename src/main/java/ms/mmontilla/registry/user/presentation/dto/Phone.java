@@ -20,19 +20,31 @@ public class Phone {
 
     @JsonProperty("citycode")
     @NotNull
-    @Min(1) @Max(3)
+    @Min(1)
+    @Max(3)
     private Integer cityCode = null;
 
     @JsonProperty("contrycode")
     @NotNull
-    @Min(1) @Max(3)
+    @Min(1)
+    @Max(3)
     private Integer countryCode = null;
+
+    public Phone() {
+    }
+
+    public Phone(Integer number, Integer cityCode, Integer countryCode) {
+        this.number = number;
+        this.cityCode = cityCode;
+        this.countryCode = countryCode;
+    }
 
     @Schema(description = "")
     @NotNull
     public Integer getNumber() {
         return number;
     }
+
     public void setNumber(Integer number) {
         this.number = number;
     }
@@ -42,6 +54,7 @@ public class Phone {
     public Integer getCityCode() {
         return cityCode;
     }
+
     public void setCityCode(Integer cityCode) {
         this.cityCode = cityCode;
     }

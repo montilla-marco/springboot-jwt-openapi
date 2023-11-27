@@ -1,4 +1,4 @@
-package ms.mmontilla.registry.user.presentation.utils;
+package ms.mmontilla.registry.user.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

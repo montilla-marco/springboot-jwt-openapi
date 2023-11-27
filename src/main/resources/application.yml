@@ -1,5 +1,5 @@
 app:
-  name: MS User Service
+  name: MS UserVo Service
   description: REST API for create users using JWT.
   version: 0.0.1
   contact:

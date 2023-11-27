@@ -2,9 +2,9 @@ package ms.mmontilla.registry.user.presentation.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ms.mmontilla.registry.user.presentation.ApiController;
+import ms.mmontilla.registry.user.presentation.adapter.UserService;
 import ms.mmontilla.registry.user.presentation.dto.UserIn;
-import ms.mmontilla.registry.user.presentation.service.UserService;
-import ms.mmontilla.registry.user.presentation.utils.UsersFactories;
+import ms.mmontilla.registry.user.utils.UsersFactories;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +62,7 @@ class ApiControllerHttpTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isInternalServerError());
     }
+
     @Test
     void givenEmptyUser_whenSave_thenThrowsBadRequest() throws Exception {
         // arrange

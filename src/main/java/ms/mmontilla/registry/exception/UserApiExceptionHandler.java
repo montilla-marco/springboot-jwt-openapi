@@ -22,8 +22,8 @@ public class UserApiExceptionHandler extends ResponseEntityExceptionHandler {
                                                                   WebRequest request) {
         ObjectError objectError = ex.getBindingResult().getAllErrors().get(0);
         return new ResponseEntity<Object>(new Error(objectError.getDefaultMessage()),
-                                         headers,
-                                         HttpStatus.BAD_REQUEST);
+                headers,
+                HttpStatus.BAD_REQUEST);
     }
 
     @Override

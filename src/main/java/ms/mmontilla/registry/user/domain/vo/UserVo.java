@@ -1,12 +1,10 @@
 package ms.mmontilla.registry.user.domain.vo;
 
-import ms.mmontilla.registry.user.presentation.dto.Phone;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public class User {
+public class UserVo {
 
     private UUID id = null;
 
@@ -24,9 +22,9 @@ public class User {
 
     private LocalDateTime lastLogin = null;
 
-    private Boolean isactive = null;
+    private Boolean isActive = null;
 
-    private List<Phone> phones;
+    private List<PhoneVo> phones;
 
     public UUID getId() {
         return id;
@@ -93,18 +91,18 @@ public class User {
     }
 
     public Boolean isActive() {
-        return isactive;
+        return isActive;
     }
 
     public void isActive(Boolean isactive) {
-        this.isactive = isactive;
+        this.isActive = isactive;
     }
 
-    public List<Phone> getPhones() {
+    public List<PhoneVo> getPhones() {
         return phones;
     }
 
-    public void setPhones(List<Phone> phones) {
+    public void setPhones(List<PhoneVo> phones) {
         this.phones = phones;
     }
 }

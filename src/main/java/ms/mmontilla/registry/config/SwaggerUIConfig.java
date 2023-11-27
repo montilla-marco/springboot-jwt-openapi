@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @OpenAPIDefinition(
-        info =@Info(
-                title = "User API",
+        info = @Info(
+                title = "UserVo API",
                 version = "${app.version}",
                 contact = @Contact(
                         name = "${app.contact.name}", email = "${app.contact.email}", url = "${app.contact.url}"
@@ -21,4 +21,5 @@ import org.springframework.context.annotation.Configuration;
                 description = "${app.description}"
         )
 )
-public class SwaggerUIConfig { }
+public class SwaggerUIConfig {
+}
