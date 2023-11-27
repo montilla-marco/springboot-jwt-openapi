@@ -181,7 +181,7 @@ curl --location 'http://localhost:8092/api/v1/users' \
 }'
 ```
 
-#Estatus del proyecto
+# Estatus del proyecto
 ## **Incomplete**
 
 ### Reference Documentation
