@@ -4,4 +4,6 @@ import ms.mmontilla.registry.user.repository.datasource.model.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserEntityRepo extends JpaRepository<UserEntity, String> {
+
+    public UserEntity findByEmail(String email);
 }

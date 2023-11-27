@@ -1,26 +1,39 @@
 package ms.mmontilla.registry.user.domain.port.impl;
 
 import ms.mmontilla.registry.user.domain.adapter.UserAdapter;
+import ms.mmontilla.registry.user.domain.exception.InvalidPasswordFormatException;
 import ms.mmontilla.registry.user.domain.vo.UserVo;
+import ms.mmontilla.registry.user.repository.datasource.model.UserEntity;
 import ms.mmontilla.registry.user.utils.UsersFactories;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class UserVoPortDefaultImplTest {
+class UserPortDefaultImplTest {
 
     @InjectMocks
     private UserPortDefaultImpl userPort;
 
     @Mock
     private UserAdapter adapter;
+
+    @BeforeEach
+    void setUp() {
+        ReflectionTestUtils.setField(userPort,
+                "passWordRegexp",
+                "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)(?!.* ).{8,16}$");
+    }
 
     @Test
     void givenUser_whenSave_thenReturnUserCreated() {
@@ -51,5 +64,21 @@ class UserVoPortDefaultImplTest {
         assertThat(userVoCreated.getId()).isEqualTo(dummiUserVo.getId());
         assertThat(userVoCreated.getAccessToken()).isEqualTo(dummiUserVo.getAccessToken());
         assertThat(userVoCreated.isActive()).isEqualTo(dummiUserVo.isActive());
+    }
+
+    @Test
+    void givenUserWithInvalidPassword_whenSave_thenThrowsInvalidPasswordFormatException() {
+        //arrange
+        UserVo userVo = UsersFactories.getDefaultUserVo();
+        userVo.setPassword("Xxx");
+
+        // assert
+        Exception exception = assertThrows(InvalidPasswordFormatException.class, () -> {
+            // act
+            userPort.save(userVo);
+        });
+
+        // assert
+        assertTrue(exception.getMessage().contains("Invalid Password Format"));
     }
 }

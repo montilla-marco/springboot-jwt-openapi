@@ -9,10 +9,10 @@ public class UserEntity {
 
     @Id
     @Column(name = "id")
-    private UUID id = null;
+    private UUID id;
 
     @Column(name = "access_token")
-    private String accessToken = null;
+    private String accessToken;
 
     @Column(name = "email")
     private String email;
@@ -21,16 +21,16 @@ public class UserEntity {
     private String password;
 
     @Column(name = "created")
-    private LocalDateTime created = null;
+    private LocalDateTime created;
 
     @Column(name = "modified")
-    private LocalDateTime modified = null;
+    private LocalDateTime modified;
 
     @Column(name = "last_Login")
-    private LocalDateTime lastLogin = null;
+    private LocalDateTime lastLogin;
 
     @Column(name = "is_active")
-    private Boolean isActive = null;
+    private Boolean isActive;
 
     @OneToOne(mappedBy="user", cascade = CascadeType.ALL)
     private PersonEntity person;
