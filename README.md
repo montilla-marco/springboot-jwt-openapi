@@ -153,6 +153,37 @@ components:
 ```
 Haga el contrato en la siguiente direccion: https://editor-next.swagger.io/
 
+## Instrucciones para ejecucion
+
+### Requerimientos minimos
+.- Java 8
+### Forma Basica
+```
+./gradlew bootRun
+```
+#### Llamar al API
+
+### Postman
+```
+curl --location 'http://localhost:8092/api/v1/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Juan Rodriguez",
+    "email": "juan@rodriguez.org",
+    "password": "hunter2",
+    "phones": [
+        {
+        "number": "1234567",
+        "citycode": "1",
+        "contrycode": "57"
+        }
+    ]
+}'
+```
+
+#Estatus del proyecto
+## **Incomplete**
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 

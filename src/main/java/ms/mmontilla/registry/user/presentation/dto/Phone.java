@@ -10,24 +10,17 @@ import javax.validation.constraints.Size;
 
 public class Phone {
     @JsonProperty("number")
-    @NotNull
-    @Size(
-            min = 6,
-            max = 9,
-            message = "The author email '${validatedValue}' must be between {min} and {max} characters long"
-    )
+    @Min(6)
     private Integer number = null;
 
     @JsonProperty("citycode")
     @NotNull
     @Min(1)
-    @Max(3)
     private Integer cityCode = null;
 
     @JsonProperty("contrycode")
     @NotNull
     @Min(1)
-    @Max(3)
     private Integer countryCode = null;
 
     public Phone() {

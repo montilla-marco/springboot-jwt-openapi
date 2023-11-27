@@ -55,10 +55,6 @@ public interface Api {
                             schema = @Schema(implementation = Error.class)
                     )
             )})
-    @RequestMapping(value = "/presentation/v1/users",
-            produces = {"application/json"},
-            consumes = {"application/json"},
-            method = RequestMethod.POST)
     ResponseEntity<UserOut> createUser(@Parameter(in = ParameterIn.DEFAULT,
             description = "",
             required = true, schema = @Schema()) @Valid @RequestBody UserIn body);

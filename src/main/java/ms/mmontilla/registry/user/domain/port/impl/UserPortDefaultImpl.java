@@ -16,6 +16,7 @@ public class UserPortDefaultImpl implements UserPort {
 
     @Override
     public UserVo save(UserVo userVo) {
+        //TODO make password validation through Regexp with property configuration
         return userAdapter.save(userVo);
     }
 }

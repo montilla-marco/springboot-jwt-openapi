@@ -13,7 +13,6 @@ public class WebConfig implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("11111111111111111111111111111111111111111111");
         servlet.setThrowExceptionIfNoHandlerFound(true);
     }
 

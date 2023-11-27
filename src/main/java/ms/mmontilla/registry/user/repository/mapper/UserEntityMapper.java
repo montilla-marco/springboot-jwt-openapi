@@ -50,6 +50,7 @@ public class UserEntityMapper {
                         .stream()
                         .map(phone -> new PhoneVo(phone.getNumber(), phone.getCityCode(), phone.getCountryCode()))
                         .collect(Collectors.toList());
+        userVo.setPhones(phones);
         return userVo;
     }
 }

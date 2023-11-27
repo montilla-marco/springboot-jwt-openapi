@@ -8,22 +8,22 @@ import java.util.UUID;
 
 public class UserOut extends UserIn {
     @JsonProperty("id")
-    private UUID id = null;
+    private UUID id;
 
     @JsonProperty("created")
-    private LocalDateTime created = null;
+    private LocalDateTime created;
 
     @JsonProperty("modified")
-    private LocalDateTime modified = null;
+    private LocalDateTime modified;
 
     @JsonProperty("last_login")
-    private LocalDateTime lastLogin = null;
+    private LocalDateTime lastLogin;
 
     @JsonProperty("token")
-    private String token = null;
+    private String token;
 
-    @JsonProperty("isactive")
-    private Boolean isActive = null;
+    @JsonProperty("isActive")
+    private Boolean isActive;
 
     @Schema(description = "")
     public UUID getId() {
@@ -33,7 +33,6 @@ public class UserOut extends UserIn {
     public void setId(UUID id) {
         this.id = id;
     }
-
 
     @Schema(description = "")
     public LocalDateTime getCreated() {
@@ -71,17 +70,12 @@ public class UserOut extends UserIn {
         this.token = token;
     }
 
-    public UserOut isActive(Boolean isactive) {
-        this.isActive = isactive;
-        return this;
-    }
-
     @Schema(description = "")
     public Boolean isActive() {
         return isActive;
     }
 
-    public void setIsActive(Boolean isActive) {
+    public void isActive(Boolean isActive) {
         this.isActive = isActive;
     }
 

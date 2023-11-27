@@ -18,13 +18,13 @@ spring:
     resources:
       add-mappings: false
   datasource:
-    url: jdbc:h2:mem:conference
+    url: jdbc:h2:mem:registry
     username: sa
-    password: password
+    password: marcomarco
     driverClassName: org.h2.Driver
   jpa:
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
-    defer-datasource-initialization: true
+    defer-datasource-initialization: false
   h2:
     console:
       enabled: true

@@ -1,26 +1,38 @@
 package ms.mmontilla.registry.user.repository.datasource.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Entity(name = "users")
 public class UserEntity {
 
+    @Id
+    @Column(name = "id")
     private UUID id = null;
 
+    @Column(name = "access_token")
     private String accessToken = null;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "created")
     private LocalDateTime created = null;
 
+    @Column(name = "modified")
     private LocalDateTime modified = null;
 
+    @Column(name = "last_Login")
     private LocalDateTime lastLogin = null;
 
+    @Column(name = "is_active")
     private Boolean isActive = null;
 
+    @OneToOne(mappedBy="user", cascade = CascadeType.ALL)
     private PersonEntity person;
 
     public UUID getId() {
