@@ -5,7 +5,9 @@ import ms.mmontilla.registry.user.domain.vo.UserVo;
 import ms.mmontilla.registry.user.presentation.dto.Phone;
 import ms.mmontilla.registry.user.presentation.dto.UserIn;
 import ms.mmontilla.registry.user.presentation.dto.UserOut;
+import ms.mmontilla.registry.user.repository.datasource.model.PersonEntity;
 import ms.mmontilla.registry.user.repository.datasource.model.PhoneEntity;
+import ms.mmontilla.registry.user.repository.datasource.model.UserEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,5 +75,19 @@ public class UsersFactories {
         userVo.setAccessToken(accessToken);
         userVo.isActive(true);
         return userVo;
+    }
+
+    public static UserEntity getDefaultUserEntity() {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail("juan@rodriguez.org");
+        userEntity.setPassword("hunter2");
+        PersonEntity person = new PersonEntity(UUID.randomUUID(), "Juan Rodriguez", getDefaultPhoneEntities());
+        userEntity.setPerson(person);
+        UUID uuid = UUID.randomUUID();
+        userEntity.setId(uuid);
+        String accessToken = JwtUtils.getAccessToken("juan@rodriguez.org");
+        userEntity.setAccessToken(accessToken);
+        userEntity.isActive(true);
+        return userEntity;
     }
 }

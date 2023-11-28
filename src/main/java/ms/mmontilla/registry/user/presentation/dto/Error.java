@@ -14,7 +14,7 @@ public class Error {
         this.message = message;
     }
 
-    @Schema(required = true, description = "")
+    @Schema
     public String getMessage() {
         return message;
     }

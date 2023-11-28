@@ -21,6 +21,8 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class UserPortDefaultImplTest {
 
+    private static final String password = "MarcoMarco2020";
+
     @InjectMocks
     private UserPortDefaultImpl userPort;
 
@@ -38,6 +40,8 @@ class UserPortDefaultImplTest {
     void givenUser_whenSave_thenReturnUserCreated() {
         //arrange
         UserVo userVo = UsersFactories.getDefaultUserVo();
+        userVo.setPassword(password);
+        userVo.setPassword(password);
         when(adapter.save(any(UserVo.class))).thenReturn(new UserVo());
 
         //act
@@ -52,6 +56,7 @@ class UserPortDefaultImplTest {
     void givenUserWithUserInEntries_whenSave_thenReturnUserFullCreated() {
         //arrange
         UserVo userVo = UsersFactories.getDefaultUserVo();
+        userVo.setPassword(password);
         UserVo dummiUserVo = UsersFactories.getDefaultUserVo();
         when(adapter.save(any(UserVo.class))).thenReturn(dummiUserVo);
 
@@ -85,7 +90,7 @@ class UserPortDefaultImplTest {
     void givenUserWithValidPassword_whenSave_then() {
         //arrange
         UserVo userVo = UsersFactories.getDefaultUserVo();
-        userVo.setPassword("Esteban2020");
+        userVo.setPassword(password);
         when(adapter.save(any(UserVo.class))).thenReturn(userVo);
 
         // act

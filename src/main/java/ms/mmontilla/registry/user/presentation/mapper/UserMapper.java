@@ -11,7 +11,6 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-//TODO Complete this mapper using MapStruct
 @Component
 public class UserMapper {
 
@@ -24,7 +23,6 @@ public class UserMapper {
                 .stream()
                 .map(phone -> new PhoneVo(phone.getNumber(), phone.getCityCode(), phone.getCountryCode()))
                 .collect(toList());
-        ;
         userVo.setPhones(phones);
         return userVo;
     }

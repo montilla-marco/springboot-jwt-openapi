@@ -8,6 +8,7 @@ import ms.mmontilla.registry.user.repository.datasource.DataSource;
 import ms.mmontilla.registry.user.repository.datasource.model.PersonEntity;
 import ms.mmontilla.registry.user.repository.datasource.model.UserEntity;
 import ms.mmontilla.registry.user.repository.mapper.UserEntityMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -19,6 +20,9 @@ public class UserAdapterImpl implements UserAdapter {
     private final DataSource dataSource;
 
     private final UserEntityMapper mapper;
+
+    @Value("${app.jwt.generator.key:}")
+    private String jwtSecret;
 
     public UserAdapterImpl(DataSource dataSource, UserEntityMapper mapper) {
         this.dataSource = dataSource;
@@ -38,8 +42,8 @@ public class UserAdapterImpl implements UserAdapter {
         return mapper.map(entity);
     }
 
-    public static String getAccessToken(String userName) {
-        Algorithm algorithm = Algorithm.HMAC256("secret-jwt".getBytes());
+    private String getAccessToken(String userName) {
+        Algorithm algorithm = Algorithm.HMAC256(jwtSecret.getBytes());
         return JWT.create()
                 .withSubject(userName)
                 .withExpiresAt(new Date(System.currentTimeMillis()))

@@ -40,7 +40,7 @@ class ApiControllerHttpTest {
         String expected = "{\"message\":\"No existe contenido en el recurso solicitado\"}";
 
         // act and assert
-        this.mockMvc.perform(post("/presentation/v1/users/one")
+        this.mockMvc.perform(post("/api/v1/users/one")
                         .content("{}")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -53,14 +53,15 @@ class ApiControllerHttpTest {
         // arrange
         UserIn user = UsersFactories.getDefaultUserIn();
         when(service.createUser(any(UserIn.class))).thenThrow(new NullPointerException());
-        //TODO review how to eliminate scape character for this test
+        String expected = "{\"message\":\"Ocurrio un inconveniente procesando la soilicitud\"}";
 
         // act and assert
-        this.mockMvc.perform(post("/presentation/v1/users")
+        this.mockMvc.perform(post("/api/v1/users")
                         .content(objectMapper.writeValueAsString(user))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isInternalServerError());
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().string(Matchers.containsString(expected)));
     }
 
     @Test
@@ -70,7 +71,7 @@ class ApiControllerHttpTest {
         String expected = "{\"message\":\"El nombre es un campo obligatorio\"}";
 
         // act and assert
-        this.mockMvc.perform(post("/presentation/v1/users")
+        this.mockMvc.perform(post("/api/v1/users")
                         .content(objectMapper.writeValueAsString(user))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -86,7 +87,7 @@ class ApiControllerHttpTest {
         String expected = "{\"message\":\"El correo electronico es un campo obligatorio\"}";
 
         // act and assert
-        this.mockMvc.perform(post("/presentation/v1/users")
+        this.mockMvc.perform(post("/api/v1/users")
                         .content(objectMapper.writeValueAsString(user))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -103,7 +104,7 @@ class ApiControllerHttpTest {
         String expected = "{\"message\":\"El formato del correo electronico es invalido\"}";
 
         // act and assert
-        this.mockMvc.perform(post("/presentation/v1/users")
+        this.mockMvc.perform(post("/api/v1/users")
                         .content(objectMapper.writeValueAsString(user))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -120,7 +121,7 @@ class ApiControllerHttpTest {
         String expected = "{\"message\":\"La clave es un campo obligatorio\"}";
 
         // act and assert
-        this.mockMvc.perform(post("/presentation/v1/users")
+        this.mockMvc.perform(post("/api/v1/users")
                         .content(objectMapper.writeValueAsString(user))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -138,15 +139,13 @@ class ApiControllerHttpTest {
         String expected = "{\"message\":\"Al menos un numero telefonico debe ser ingresado\"}";
 
         // act and assert
-        this.mockMvc.perform(post("/presentation/v1/users")
+        this.mockMvc.perform(post("/api/v1/users")
                         .content(objectMapper.writeValueAsString(user))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string(Matchers.notNullValue()));
     }
-
-    //TODO make some test for @Valid, at this instance, doesn't work
 }
 
 

@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService {
     public UserOut createUser(UserIn userIn) {
         UserVo userVo = mapper.map(userIn);
         UserVo userVoSaved = userPort.save(userVo);
-        UserOut userOut = mapper.map(userVoSaved);
-        return userOut;
+        return mapper.map(userVoSaved);
     }
 }

@@ -4,6 +4,7 @@ import ms.mmontilla.registry.user.domain.exception.InvalidPasswordFormatExceptio
 import ms.mmontilla.registry.user.presentation.dto.Error;
 import ms.mmontilla.registry.user.repository.exception.DataSourceTierException;
 import ms.mmontilla.registry.user.repository.exception.UserAlreadyExistsException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +19,16 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class UserApiExceptionHandler extends ResponseEntityExceptionHandler {
 
+    @Value("${app.user.validations.regexp.message}")
+    private String passwordRegexpMessage;
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers,
                                                                   HttpStatus status,
                                                                   WebRequest request) {
         ObjectError objectError = ex.getBindingResult().getAllErrors().get(0);
-        return new ResponseEntity<Object>(new Error(objectError.getDefaultMessage()),
+        return new ResponseEntity(new Error(objectError.getDefaultMessage()),
                 headers,
                 HttpStatus.BAD_REQUEST);
     }
@@ -34,7 +38,7 @@ public class UserApiExceptionHandler extends ResponseEntityExceptionHandler {
                                                                    HttpHeaders headers,
                                                                    HttpStatus status,
                                                                    WebRequest request) {
-        return new ResponseEntity<Object>(new Error("No existe contenido en el recurso solicitado"),
+        return new ResponseEntity<>(new Error("No existe contenido en el recurso solicitado"),
                 headers,
                 HttpStatus.NO_CONTENT);
     }
@@ -45,7 +49,7 @@ public class UserApiExceptionHandler extends ResponseEntityExceptionHandler {
                                                              HttpHeaders headers,
                                                              HttpStatus status,
                                                              WebRequest request) {
-        return new ResponseEntity<Object>(new Error("Ocurrio un inconveniente procesando la solicitud"),
+        return new ResponseEntity<>(new Error("Ocurrio un inconveniente procesando la solicitud"),
                 headers,
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -54,7 +58,7 @@ public class UserApiExceptionHandler extends ResponseEntityExceptionHandler {
             DataSourceTierException.class
     })
     public ResponseEntity<Object> handleDataSourceException(Exception ex) {
-        return new ResponseEntity<Object>(new Error("Ocurrio un inconveniente en la data"),
+        return new ResponseEntity<>(new Error("Ocurrio un inconveniente en la data"),
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -62,7 +66,7 @@ public class UserApiExceptionHandler extends ResponseEntityExceptionHandler {
             UserAlreadyExistsException.class
     })
     public ResponseEntity<Object> handleUserAlreadyExistsException(Exception ex) {
-        return new ResponseEntity<Object>(new Error("El usuario que esta tratando de crear ya existe"),
+        return new ResponseEntity<>(new Error("El usuario que esta tratando de crear ya existe"),
                 HttpStatus.CONFLICT);
     }
 
@@ -70,9 +74,7 @@ public class UserApiExceptionHandler extends ResponseEntityExceptionHandler {
             InvalidPasswordFormatException.class
     })
     public ResponseEntity<Object> handleInvalidPasswordFormatException(Exception ex) {
-        return new ResponseEntity<Object>(new Error("El formato del password debe tener " +
-                "entre 8 y 16 digitos, de los cuales al menos un numero, una minusculas " +
-                " sin caracteres especiales"),
+        return new ResponseEntity<>(new Error(passwordRegexpMessage),
                 HttpStatus.CONFLICT);
     }
 
@@ -82,7 +84,7 @@ public class UserApiExceptionHandler extends ResponseEntityExceptionHandler {
             Exception.class
     })
     public ResponseEntity<Object> handleAnyException(Exception ex) {
-        return new ResponseEntity<Object>(new Error("Ocurrio un inconveniente procesando la soilicitud"),
+        return new ResponseEntity<>(new Error("Ocurrio un inconveniente procesando la soilicitud"),
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

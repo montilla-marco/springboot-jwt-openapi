@@ -1,0 +1,3 @@
+#!/bin/sh
+
+./gradlew build && docker build --tag mmontilla/user-registry:0.0.1 . && docker run -p 8092:8092 mmontilla/user-registry:0.0.1

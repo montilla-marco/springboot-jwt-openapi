@@ -38,7 +38,7 @@ public class UserIn {
         this.name = name;
     }
 
-    @Schema(required = true, description = "")
+    @Schema
     @NotNull(message = "El correo electronico es un campo obligatorio")
     public String getEmail() {
         return email;
@@ -48,7 +48,7 @@ public class UserIn {
         this.email = email;
     }
 
-    @Schema(required = true, description = "")
+    @Schema
     public String getPassword() {
         return password;
     }
@@ -57,7 +57,7 @@ public class UserIn {
         this.password = password;
     }
 
-    @Schema(required = true, description = "")
+    @Schema
     public List<Phone> getPhones() {
         return phones;
     }

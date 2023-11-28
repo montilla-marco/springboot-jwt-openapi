@@ -151,7 +151,58 @@ components:
           type: string
 
 ```
-Haga el contrato en la siguiente direccion: https://editor-next.swagger.io/
+Haga copiar y pegar el contrato en la siguiente direccion: https://editor-next.swagger.io/
+
+## Diagrama de Clases
+Se agruparon dichos diagramas en cuatro, segun su rol en la aplaicacion:
+- Elementos Globales de la aplicacion
+* Presentacion
++ Dominio
+* Datos
+
+La division en esos grupos permite desacoplar en dominios y funciones para lograr
+una independencia entre cada uno de ello, logrado que la capa logica de negocios (Domain)
+sea independiente de la presentacion y el origen de datos.
+
+### Elementos Globales
+Corresponde a aquellos elementos que aplican a toda la aplicacion.
+
+![plot](./global-app-components.png)
+
+### Elementos de Presentacion
+En este caso dichos componentes permiten la exposicion de los serrvicios ofrecidos desde la API, hacia 
+sus posibles consumidores via HTTP.
+
+![plot](./presentation-service-tier.png)
+
+capas:
+* Presentacion -> Encargada de manejar HTTP
+* Servicio -> Delgada capa para encargarse de preparar los DTO para pasarlos al Port
+* Port -> Punto de union con el Adapter de la capa de negocio. (Dependency Inversion)
+
+### Elementos de Dominio
+Aqui reposa la logica de negocios de forma independiente, ya que al aplicar el principio de inversion de 
+dependencia, logramos desacoplar dicha capa de la presentacion y de los datos.
+
+![plot](./domain-port-tier.png)
+
+capas:
+* domain -> Encargada de la logica de negocios y subdividida en:
+ * Adapter -> Delgada capa para unir con el Port de presentacion
+ * Port -> Punto de union con el Port de la capa de datos.
+
+### Elementos de Persistencia
+Se encarga de agrupar todos los posibles origenes y destino de datos que alimentan
+o persiten de alguna forma la informacion a ser enviada de vuelta.
+
+![plot](./repository-datasource-tier.png)
+
+capas:
+* repository -> Encargada de la logica de negocios y subdividida en:
+* Adapter -> Implementacion del Adapter de la capa de negocios
+* datasource -> encargada de agrupar las fuentes de datos.
+
+Asi concluye mi entendimiento de una sencilla arquitectura hexagonal.
 
 ## Instrucciones para ejecucion
 
@@ -181,8 +232,26 @@ curl --location 'http://localhost:8092/api/v1/users' \
 }'
 ```
 
-# Estatus del proyecto
-## **Incomplete**
+## Usando Docker
+
+### Requerimientos
+.- Docker
+
+## Contruyendo y ejecutando la imagen
+
+```
+./gradlew build
+chmod +rwx build-run-app 
+./build-run-app
+```
+
+## Liberando recursos
+
+```
+docker rm $(docker stop $(docker ps -a -q --filter ancestor=mmontilla/user-registry:0.0.1 --format="{{.ID}}"))
+docker rmi mmontilla/user-registry:0.0.1
+```
+
 
 ### Reference Documentation
 For further reference, please consider the following sections:
